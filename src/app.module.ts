@@ -15,6 +15,7 @@ import { TodoModule } from './modules/todo/todo.module';
       database: 'todo',
       entities: [],
       synchronize: true,
+      autoLoadEntities: true,
     }),
     TodoModule,
   ],
