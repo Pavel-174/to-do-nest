@@ -8,6 +8,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { Todo } from '../entities/todo.entity';
+import { CreateDto, UpdateDto } from './dto';
 
 @Controller('rest/todo')
 export class TodoController {
@@ -17,8 +18,7 @@ export class TodoController {
   }
 
   @Post()
-  createAction(@Body() todo: Todo): Todo {
-    delete todo.id;
+  createAction(@Body() todo: CreateDto): CreateDto {
     console.log(todo);
     return todo;
   }
@@ -28,9 +28,9 @@ export class TodoController {
     return 'Delete! id:' + id;
   }
 
-  @Put()
-  updateAction(@Body() todo: Todo): Todo {
-    console.log('Search by ID', todo.id);
+  @Put(':id')
+  updateAction(@Param(':id') id: string, @Body() todo: UpdateDto): UpdateDto {
+    console.log('Search by ID', id);
     console.log(todo, 'saved');
     return todo;
   }
